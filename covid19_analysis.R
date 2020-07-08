@@ -11,11 +11,12 @@
 } # import packages
 
 {
-  usethis::use_git_config(user.name = "x", # full name
-                          user.email = "x") # Semail
+  usethis::use_git_config(user.name = "Matheus H O Silva", # full name
+                          user.email = "ra81780@uem.br") # email
+  
   usethis::browse_github_token()
   
-  GITHUB_PAT= "x"
+  GITHUB_PAT1= "caa53f4a1e249b5dee0920a7b01cb8e455c916fd"
   
 } # git information
 
@@ -89,4 +90,5 @@
   
 } # database by individual cases
 
-
+# teste
+# teste 2
