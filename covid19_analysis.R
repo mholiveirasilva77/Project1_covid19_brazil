@@ -1,6 +1,6 @@
 { 
   # Check if the packages that we need are installed
-  want = c("tidyverse", "data.table", "readr", "stringr", "zoo", "plyr", "dplyr", "COVID19", "usethis", "tidyr")
+  want = c("tidyverse", "data.table", "readr", "stringr", "zoo", "plyr", "dplyr", "COVID19", "usethis", "tidyr","plotly")
   have = want %in% rownames(installed.packages())
   # Install the packages that we miss
   if ( any(!have) ) { install.packages( want[!have] ) }
@@ -90,5 +90,42 @@
   
 } # database by individual cases
 
-# teste
-# teste 2
+  # Histograma de nº casos positivos por idade
+  
+    #Create data
+    #set.seed(1)
+    #Feminino=rnorm(4000 , 120 , 30)     
+    #Masculino=rnorm(4000 , 200 , 30)
+
+    # First distribution
+    #hist(Feminino, breaks=30, xlim=c(0,300), col=rgb(1,0,0,0.5), xlab="height", 
+    #     ylab="nbr of plants", main="distribution of height of 2 durum wheat varieties" )
+    
+    # Second with add=T to plot on top
+    #hist(Primadur, breaks=30, xlim=c(0,300), col=rgb(0,0,1,0.5), add=T)
+    
+    # Add legend
+    #legend("topright", legend=c("Ixos","Primadur"), col=c(rgb(1,0,0,0.5), 
+    #                                                      rgb(0,0,1,0.5)), pt.cex=2, pch=15 )
+    
+  ##  GRAFICO LINHA - Casos em Maringá
+    # select database
+      Mgacasos = dcitypr %>% filter(select == c("Maring?"))
+      
+
+    # Line Graph
+      ggplot(data=Mgacasos, aes(x=date, y=confirmed_new, group = select)) + 
+        geom_line() +
+        geom_point(aes(x=date, y=confirmed_new, color = select))+ggtitle("Evolução de Casos de Covid em Maringá")
+    
+  ##  GRAFICO LINHA - Casos positivos de homens por idade no PR
+    # select database
+      PRcasosmasc = dcovid19sy %>% filter(sexo == "Masculino", resultadoTeste == "Positivo")
+      
+    
+      # Line Graph
+      ggplot(PRcasosmasc, aes(x=idade, y=numeroNotificacao),group = sexo)+geom_line()+ggtitle("Casos positivos de homens por idade no PR")
+      
+      
+
+
